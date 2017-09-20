@@ -2,6 +2,7 @@
 #define SORTER_H
 
 struct rStruct{
+  char* color;
   char* director_name;
   int num_critic_for_reviews;
   int duration;
@@ -29,6 +30,8 @@ struct rStruct{
   float imdb_score;
   float aspect_ratio;
   int movie_facebook_likes;
+
+  struct rStruct next;
 };
 typedef struct rStruct Record;
 

@@ -3,6 +3,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include "Sorter.h"
+//#include "mergesort.c"
 
 int main(int argc, char *argv[]){
   //make sure we have all 3 args
@@ -22,11 +23,13 @@ int main(int argc, char *argv[]){
   //get next line, break it up into tokens
   getline(&line, &nbytes, stdin);
   while (line != NULL) {
+    //CREATE NEW STRUCT
     char * token = strtok(line, ",");
     //loop through each token in the line
     int colId = 0;
     //CREATE COLUMN ARRAY HERE MAPING INTS TO COLUMN HEADERS
     while (token != NULL){
+      //POPULATE STRUCT BASED OFF OF COLID
       printf("%s: %s\n", column[colId], token);
       colId++;
       token = strtok(NULL, ",");
@@ -35,5 +38,7 @@ int main(int argc, char *argv[]){
       break;
     }
   }
+  //MERGESORT(HEAD)
+  //PRINT TO CSV(HEAD)
   return 0;
 }
