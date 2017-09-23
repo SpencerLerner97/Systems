@@ -59,6 +59,7 @@ int main(int argc, char *argv[]){
   //PRINT TO CSV(HEAD)
 
   /*
+  USE FOR STRUCT LOADING
   switch(colId){
     case 0:
       head->color = entry;
