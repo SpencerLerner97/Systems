@@ -3,7 +3,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include "Sorter.h"
-//#include "mergesort.c"
+#include "mergesort.c"
 
 int main(int argc, char *argv[]){
   //make sure we have all 3 args
@@ -16,29 +16,46 @@ int main(int argc, char *argv[]){
     printf("Usage is: 'cat input.file | ./sorter -c  movie_title'\n");
   }
   char * sortbyCol = argv[2];
-  Record * record = (Record *)malloc(sizeof(Record));
   char * line = NULL;
   size_t nbytes = 5000 * sizeof(char);
+  Record * prevRec = NULL;
+  Record * head  = (Record *)malloc(sizeof(Record));
 
-  //get next line, break it up into tokens
-  getline(&line, &nbytes, stdin);
-  while (line != NULL) {
-    //CREATE NEW STRUCT
-    char * token = strtok(line, ",");
-    //loop through each token in the line
+  //eat stdin line by line
+  while (getline(&line, &nbytes, stdin) != -1) {
+    int start = 0;
+    int end = 0;
+    char lookAhead = line[end];
     int colId = 0;
-    //CREATE COLUMN ARRAY HERE MAPING INTS TO COLUMN HEADERS
-    while (token != NULL){
-      //POPULATE STRUCT BASED OFF OF COLID
-      printf("%s: %s\n", column[colId], token);
-      colId++;
-      token = strtok(NULL, ",");
+    short inString = 0;
+    while((lookAhead = line[end]) != '\n'){
+      if(lookAhead == '"'){
+        inString = ~inString; //keep track if we are inside of quotes
+      }
+      else{
+        //duplicate if statement
+        if(lookAhead == ',' && ~inString){ //token found!
+          char * token = NULL;
+          if(end != start){
+            token = (char *)malloc(sizeof(char) * (end-start));
+            memcpy(token, line + start, end-start);
+          }
+          start = ++end;
+          //switch and add to structs
+          colId++;
+          //new head, prev
+          printf("%s|", token);
+        }
+      }
+      end++;
     }
-    if(getline(&line, &nbytes, stdin) == -1){
-      break;
-    }
+    printf("\n\n");
   }
-  //MERGESORT(HEAD)
+  while(head->next != NULL){
+    printf("%s\n", head->movie_title);
+    head = head->next;
+  }
+  Record * newHead = mergesort(head, sortbyCol);
   //PRINT TO CSV(HEAD)
   return 0;
 }
