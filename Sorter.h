@@ -1,7 +1,6 @@
 #ifndef SORTER_H
 #define SORTER_H
-
-typedef struct recNode{
+struct rStruct{
   char* color;
   char* director_name;
   int num_critic_for_reviews;
@@ -31,7 +30,8 @@ typedef struct recNode{
   float aspect_ratio;
   int movie_facebook_likes;
 
-  struct recNode * next;
-} Record;
+  struct rStruct * next;
+};
+typedef struct rStruct Record;
 
 #endif
