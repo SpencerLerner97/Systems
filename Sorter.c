@@ -36,9 +36,10 @@ int main(int argc, char *argv[]){
       }
       else{ //normal char
         if(lookAhead == ',' && inString == 0){ //token found!
-          char * token = NULL;
+          char * token = (char *)malloc(sizeof(char));
+          token[0] = '\0';
           if(end != start){ //if end == start, this is an empty entry
-            token = (char *)malloc(sizeof(char) * (end-start));
+            token = (char *)realloc(token, sizeof(char) * (end-start));
             if(line[start] == '"' && line[end-1] == '"'){ //trims quotes
               //trim whitespace
               int tempEnd = end;
@@ -71,25 +72,25 @@ int main(int argc, char *argv[]){
               head->director_name = token;
               break;
             case 2:
-              head->num_critic_for_reviews = token == NULL ? -1 : atoi(token);
+              head->num_critic_for_reviews = token[0] == '\0' ? -1 : atoi(token);
               break;
             case 3:
-              head->duration = token == NULL ? -1 : atoi(token);
+              head->duration = token[0] == '\0' ? -1 : atoi(token);
               break;
             case 4:
-              head->director_facebook_likes = token == NULL ? -1 : atoi(token);
+              head->director_facebook_likes = token[0] == '\0' ? -1 : atoi(token);
               break;
             case 5:
-              head->actor_3_facebook_likes = token == NULL ? -1 : atoi(token);
+              head->actor_3_facebook_likes = token[0] == '\0' ? -1 : atoi(token);
               break;
             case 6:
               head->actor_2_name = token;
               break;
             case 7:
-              head->actor_1_facebook_likes = token == NULL ? -1 : atoi(token);
+              head->actor_1_facebook_likes = token[0] == '\0' ? -1 : atoi(token);
               break;
             case 8:
-              head->gross = token == NULL ? -1 : atoi(token);
+              head->gross = token[0] == '\0' ? -1 : atoi(token);
               break;
             case 9:
               head->genres = token;
@@ -101,16 +102,16 @@ int main(int argc, char *argv[]){
               head->movie_title = token;
               break;
             case 12:
-              head->num_voted_users = token == NULL ? -1 : atoi(token);
+              head->num_voted_users = token[0] == '\0' ? -1 : atoi(token);
               break;
             case 13:
-              head->cast_total_facebook_likes = token == NULL ? -1 : atoi(token);
+              head->cast_total_facebook_likes = token[0] == '\0' ? -1 : atoi(token);
               break;
             case 14:
               head->actor_3_name = token;
               break;
             case 15:
-              head->facenumber_in_poster = token == NULL ? -1 : atoi(token);
+              head->facenumber_in_poster = token[0] == '\0' ? -1 : atoi(token);
               break;
             case 16:
               head->plot_keywords = token;
@@ -119,7 +120,7 @@ int main(int argc, char *argv[]){
               head->movie_imdb_link = token;
               break;
             case 18:
-              head->num_user_for_reviews = token == NULL ? -1 : atoi(token);
+              head->num_user_for_reviews = token[0] == '\0' ? -1 : atoi(token);
               break;
             case 19:
               head->language = token;
@@ -131,22 +132,22 @@ int main(int argc, char *argv[]){
               head->content_rating = token;
               break;
             case 22:
-              head->budget = token == NULL ? -1 : atoi(token);
+              head->budget = token[0] == '\0' ? -1 : atoi(token);
               break;
             case 23:
-              head->title_year = token == NULL ? -1 : atoi(token);
+              head->title_year = token[0] == '\0' ? -1 : atoi(token);
               break;
             case 24:
-              head->actor_2_facebook_likes = token == NULL ? -1 : atoi(token);
+              head->actor_2_facebook_likes = token[0] == '\0' ? -1 : atoi(token);
               break;
             case 25:
-              head->imdb_score = token == NULL ? -1 : atof(token);
+              head->imdb_score = token[0] == '\0' ? -1 : atof(token);
               break;
             case 26:
-              head->aspect_ratio = token == NULL ? -1 : atof(token);
+              head->aspect_ratio = token[0] == '\0' ? -1 : atof(token);
               break;
             case 27:
-              head->movie_facebook_likes = token == NULL ? -1 : atoi(token);
+              head->movie_facebook_likes = token[0] == '\0' ? -1 : atoi(token);
               break;
             default:
               break;
@@ -162,71 +163,96 @@ int main(int argc, char *argv[]){
     head->next = prevRec;
     prevRec = head;
   }
-  while(prevRec->next != NULL){
-    if(prevRec->movie_title != NULL){
-      printf("%s\n",prevRec->movie_title);
-    }
-    prevRec = prevRec->next;
-  }
-  Record * newHead = mergesort(head, sortbyCol);
-  //PRINT TO CSV(newHead)
 
-  //free weezy
+  head = mergesort(head, sortbyCol);
+
+  //print CSV to stdout
+  printf("color,director_name,num_critic_for_reviews,duration,director_facebook_likes,"
+  "actor_3_facebook_likes,actor_2_name,actor_1_facebook_likes,gross,genres,actor_1_name,"
+  "movie_title,num_voted_users,cast_total_facebook_likes,actor_3_name,facenumber_in_poster,"
+  "plot_keywords,movie_imdb_link,num_user_for_reviews,language,country,content_rating,"
+  "budget,title_year,actor_2_facebook_likes,imdb_score,aspect_ratio,movie_facebook_likes\n");
+
   while(head->next != NULL){
-    /*free(head->color);
-    free(head->director_name);
-    free(head->num_critic_for_reviews);
-    free(head->duration);
-    free(head->director_facebook_likes);
-    free(head->actor_3_facebook_likes);
-    free(head->actor_2_name);
-    free(head->gross);
-    free(head->genres);
-    free(head->actor_1_name);
-    free(head->movie_title);
-    free(head->num_voted_users);
-    free(head->cast_total_facebook_likes);
-    free(head->actor_3_name);
-    free(head->facenumber_in_poster);
-    free(head->plot_keywords);
-    free(head->movie_imdb_link);
-    free(head->num_user_for_reviews);
-    free(head->language);
-    free(head->country);
-    free(head->content_rating);
-    free(head->budget);
-    free(head->title_year);
-    free(head->actor_2_facebook_likes);
-    free(head->imdb_score);
-    free(head->aspect_ratio);
-    free(head->movie_facebook_likes);head->num_critic_for_reviews);
-    free(head->duration);
-    free(head->director_facebook_likes);
-    free(head->actor_3_facebook_likes);
-    free(head->actor_2_name);
-    free(head->gross);
-    free(head->genres);
-    free(head->actor_1_name);
-    free(head->movie_title);
-    free(head->num_voted_users);
-    free(head->cast_total_facebook_likes);
-    free(head->actor_3_name);
-    free(head->facenumber_in_poster);
-    free(head->plot_keywords);
-    free(head->movie_imdb_link);
-    free(head->num_user_for_reviews);
-    free(head->language);
-    free(head->country);
-    free(head->content_rating);
-    free(head->budget);
-    free(head->title_year);
-    free(head->actor_2_facebook_likes);
-    free(head->imdb_score);
-    free(head->aspect_ratio);
-    free(head->movie_facebook_likes)*/
+    printf("%d\n", head->movie_facebook_likes);//THIS ISNT GETTING POPULATED!!!
+    Record * r = head;
+    if(strchr(r->movie_title, ',') == NULL){ //no commas in this movie title
+      printf("%s,%s,%d,%d,%d,%d,%s,%d,%d,%s,%s,%s,%d,%d,%s,%d,%s,%s,%d,%s,%s,%s,%d,%d,%d,%f,%f,%d\n",
+            r->color, r->director_name, r->num_critic_for_reviews, r->duration,
+            r->director_facebook_likes, r->actor_3_facebook_likes, r->actor_2_name,
+            r->actor_1_facebook_likes, r->gross, r->genres, r->actor_1_name,
+            r->movie_title, r->num_voted_users, r->cast_total_facebook_likes,
+            r->actor_3_name, r->facenumber_in_poster, r->plot_keywords, r->movie_imdb_link,
+            r->num_user_for_reviews,r->language, r->country, r->content_rating,
+            r->budget, r->title_year, r->actor_2_facebook_likes, r->imdb_score,
+            r->aspect_ratio, r->movie_facebook_likes);
+    }
+    else{ //put quotes around the movie title
+      printf("%s,%s,%d,%d,%d,%d,%s,%d,%d,%s,%s,\"%s\",%d,%d,%s,%d,%s,%s,%d,%s,%s,%s,%d,%d,%d,%f,%f,%d\n",
+            r->color, r->director_name, r->num_critic_for_reviews, r->duration,
+            r->director_facebook_likes, r->actor_3_facebook_likes, r->actor_2_name,
+            r->actor_1_facebook_likes, r->gross, r->genres, r->actor_1_name,
+            r->movie_title, r->num_voted_users, r->cast_total_facebook_likes,
+            r->actor_3_name, r->facenumber_in_poster, r->plot_keywords, r->movie_imdb_link,
+            r->num_user_for_reviews,r->language, r->country, r->content_rating,
+            r->budget, r->title_year, r->actor_2_facebook_likes, r->imdb_score,
+            r->aspect_ratio, r->movie_facebook_likes);
+    }
     Record * temp = head;
     head = head->next;
     free(temp);
   }
   return 0;
 }
+
+/*free(head->color);
+free(head->director_name);
+free(head->num_critic_for_reviews);
+free(head->duration);
+free(head->director_facebook_likes);
+free(head->actor_3_facebook_likes);
+free(head->actor_2_name);
+free(head->gross);
+free(head->genres);
+free(head->actor_1_name);
+free(head->movie_title);
+free(head->num_voted_users);
+free(head->cast_total_facebook_likes);
+free(head->actor_3_name);
+free(head->facenumber_in_poster);
+free(head->plot_keywords);
+free(head->movie_imdb_link);
+free(head->num_user_for_reviews);
+free(head->language);
+free(head->country);
+free(head->content_rating);
+free(head->budget);
+free(head->title_year);
+free(head->actor_2_facebook_likes);
+free(head->imdb_score);
+free(head->aspect_ratio);
+free(head->movie_facebook_likes);head->num_critic_for_reviews);
+free(head->duration);
+free(head->director_facebook_likes);
+free(head->actor_3_facebook_likes);
+free(head->actor_2_name);
+free(head->gross);
+free(head->genres);
+free(head->actor_1_name);
+free(head->movie_title);
+free(head->num_voted_users);
+free(head->cast_total_facebook_likes);
+free(head->actor_3_name);
+free(head->facenumber_in_poster);
+free(head->plot_keywords);
+free(head->movie_imdb_link);
+free(head->num_user_for_reviews);
+free(head->language);
+free(head->country);
+free(head->content_rating);
+free(head->budget);
+free(head->title_year);
+free(head->actor_2_facebook_likes);
+free(head->imdb_score);
+free(head->aspect_ratio);
+free(head->movie_facebook_likes);*/
