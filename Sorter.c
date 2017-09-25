@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <ctype.h>
 #include <stdlib.h>
 #include "Sorter.h"
 #include "mergesort.c"
@@ -38,7 +39,29 @@ int main(int argc, char *argv[]){
           char * token = NULL;
           if(end != start){ //if end == start, this is an empty entry
             token = (char *)malloc(sizeof(char) * (end-start));
-            memcpy(token, line + start, end-start);
+            if(line[start] == '"' && line[end-1] == '"'){ //trims quotes
+              //trim whitespace
+              int tempEnd = end;
+              while(isspace(line[tempEnd - 1])){
+                tempEnd--;
+              }
+              while(isspace(line[start+1])){
+                start++;
+              }
+              line[end - 1] = '\0';
+              memcpy(token, line + start + 1, end - start - 1);
+            }
+            else{
+              //trim whitespace
+              int tempEnd = end;
+              while(isspace(line[tempEnd])){
+                tempEnd--;
+              }
+              while(isspace(line[start])){
+                start++;
+              }
+              memcpy(token, line + start, tempEnd - start);
+            }
           }
           switch(colId){
             case 0:
@@ -139,7 +162,71 @@ int main(int argc, char *argv[]){
     head->next = prevRec;
     prevRec = head;
   }
+  while(prevRec->next != NULL){
+    if(prevRec->movie_title != NULL){
+      printf("%s\n",prevRec->movie_title);
+    }
+    prevRec = prevRec->next;
+  }
   Record * newHead = mergesort(head, sortbyCol);
-  //PRINT TO CSV(HEAD)
+  //PRINT TO CSV(newHead)
+
+  //free weezy
+  while(head->next != NULL){
+    /*free(head->color);
+    free(head->director_name);
+    free(head->num_critic_for_reviews);
+    free(head->duration);
+    free(head->director_facebook_likes);
+    free(head->actor_3_facebook_likes);
+    free(head->actor_2_name);
+    free(head->gross);
+    free(head->genres);
+    free(head->actor_1_name);
+    free(head->movie_title);
+    free(head->num_voted_users);
+    free(head->cast_total_facebook_likes);
+    free(head->actor_3_name);
+    free(head->facenumber_in_poster);
+    free(head->plot_keywords);
+    free(head->movie_imdb_link);
+    free(head->num_user_for_reviews);
+    free(head->language);
+    free(head->country);
+    free(head->content_rating);
+    free(head->budget);
+    free(head->title_year);
+    free(head->actor_2_facebook_likes);
+    free(head->imdb_score);
+    free(head->aspect_ratio);
+    free(head->movie_facebook_likes);head->num_critic_for_reviews);
+    free(head->duration);
+    free(head->director_facebook_likes);
+    free(head->actor_3_facebook_likes);
+    free(head->actor_2_name);
+    free(head->gross);
+    free(head->genres);
+    free(head->actor_1_name);
+    free(head->movie_title);
+    free(head->num_voted_users);
+    free(head->cast_total_facebook_likes);
+    free(head->actor_3_name);
+    free(head->facenumber_in_poster);
+    free(head->plot_keywords);
+    free(head->movie_imdb_link);
+    free(head->num_user_for_reviews);
+    free(head->language);
+    free(head->country);
+    free(head->content_rating);
+    free(head->budget);
+    free(head->title_year);
+    free(head->actor_2_facebook_likes);
+    free(head->imdb_score);
+    free(head->aspect_ratio);
+    free(head->movie_facebook_likes)*/
+    Record * temp = head;
+    head = head->next;
+    free(temp);
+  }
   return 0;
 }
