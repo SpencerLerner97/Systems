@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
   if(strcmp(argv[1], "-c") != 0){
     printf("Usage is: 'cat input.file | ./sorter -c  movie_title'\n");
   }
-  char * sortbyCol = argv[2];
+  const char * sortByCol = argv[2];
   char * line = NULL;
   size_t nbytes = 0 * sizeof(char);
   Record * prevRec = NULL;
@@ -167,7 +167,37 @@ int main(int argc, char *argv[]){
     prevRec = head;
   }
 
-  head = mergesort(head, sortbyCol);
+  //parse sort column into an int for the sorting
+  int sortInt = 0;
+  if(strcmp(sortByCol,  "color")==0)sortInt=0;
+  else if(strcmp(sortByCol, "director_name")==0)sortInt=1;
+  else if(strcmp(sortByCol, "num_critic_for_reviews")==0)sortInt=2;
+  else if(strcmp(sortByCol, "duration")==0)sortInt=3;
+  else if(strcmp(sortByCol, "director_facebook_likes")==0)sortInt=4;
+  else if(strcmp(sortByCol, "actor_3_facebook_likes")==0)sortInt=5;
+  else if(strcmp(sortByCol, "actor_2_name")==0)sortInt=6;
+  else if(strcmp(sortByCol, "actor_1_facebook_likes")==0)sortInt=7;
+  else if(strcmp(sortByCol, "gross")==0)sortInt=8;
+  else if(strcmp(sortByCol, "genres")==0)sortInt=9;
+  else if(strcmp(sortByCol, "actor_1_name")==0)sortInt=10;
+  else if(strcmp(sortByCol, "movie_title")==0)sortInt=11;
+  else if(strcmp(sortByCol, "num_voted_users")==0)sortInt=12;
+  else if(strcmp(sortByCol, "cast_total_facebook_likes")==0)sortInt=13;
+  else if(strcmp(sortByCol, "actor_3_name")==0)sortInt=14;
+  else if(strcmp(sortByCol, "facenumber_in_poster")==0)sortInt=15;
+  else if(strcmp(sortByCol, "plot_keywords")==0)sortInt=16;
+  else if(strcmp(sortByCol, "movie_imdb_link")==0)sortInt=17;
+  else if(strcmp(sortByCol, "num_user_for_reviews")==0)sortInt=18;
+  else if(strcmp(sortByCol, "language")==0)sortInt=19;
+  else if(strcmp(sortByCol, "country")==0)sortInt=20;
+  else if(strcmp(sortByCol, "content_rating")==0)sortInt=21;
+  else if(strcmp(sortByCol, "budget")==0)sortInt=22;
+  else if(strcmp(sortByCol, "title_year")==0)sortInt=23;
+  else if(strcmp(sortByCol, "actor_2_facebook_likes")==0)sortInt=24;
+  else if(strcmp(sortByCol, "imdb_score")==0)sortInt=25;
+  else if(strcmp(sortByCol, "aspect_ratio")==0)sortInt=27;
+  else if(strcmp(sortByCol, "movie_facebook_likes")==0)sortInt=27;
+  head = mergesort(head, sortInt);
 
   //print CSV to stdout
   printf("color,director_name,num_critic_for_reviews,duration,director_facebook_likes,"
@@ -178,8 +208,7 @@ int main(int argc, char *argv[]){
 
   while(head->next != NULL){
     Record * r = head;
-    printf("%s\n", r->movie_title);
-    /*if(strchr(r->movie_title, ',') == NULL){ //no commas in this movie title
+    if(strchr(r->movie_title, ',') == NULL){ //no commas in this movie title
       printf("%s,%s,%d,%d,%d,%d,%s,%d,%d,%s,%s,%s,%d,%d,%s,%d,%s,%s,%d,%s,%s,%s,%d,%d,%d,%f,%f,%d\n",
             r->director_name, r->director_name, r->num_critic_for_reviews, r->duration,
             r->director_facebook_likes, r->actor_3_facebook_likes, r->actor_2_name,
@@ -200,7 +229,7 @@ int main(int argc, char *argv[]){
             r->num_user_for_reviews,r->language, r->country, r->content_rating,
             r->budget, r->title_year, r->actor_2_facebook_likes, r->imdb_score,
             r->aspect_ratio, r->movie_facebook_likes);
-    }*/
+    }
     Record * temp = head;
     head = head->next;
     free(temp);
