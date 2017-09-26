@@ -11,7 +11,7 @@ count(Record ** head)
 	return c;
 }
 
-void 
+void
 split(Record ** head, Record ** secondHead, int count)
 {//this 2nd head should be an empty pointer. Count should be the number of elemnts in the list
 	int iter; Record ** temp = head;
@@ -228,11 +228,13 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
         }
           (*secondHead)->next = *merge(head,&((*secondHead)->next),sortBycol);
           return secondHead;
+		default:
+					return head;
   }
 }
 
 
-void 
+void
 mergesort(Record ** head, int sortByCol)
  {//mergesort on head done by which column. COlumn is currently a string but we may swithc it to a int.
 	 int size = count(head);
@@ -506,7 +508,3 @@ mergesort(Record ** head, int sortByCol)
 
 }
 }
-
-void main(){
-}
-
