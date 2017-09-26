@@ -238,19 +238,20 @@ mergesort(Record ** head, int sortByCol)
 	 int size = count(head);
 	 if(size > 2){//the general case of a list with more than 2 items
 		Record ** secondHead = head;
-		split(head,secondHead,count);
+		split(head,secondHead,size);
 		mergesort(head,sortByCol);
 		mergesort(secondHead,sortByCol);
 		merge(head,secondHead,sortByCol);
 
 	}
 	if(size == 2){ //if list has two items check, maybe swap and than get out.
+    Record * temp;
 		switch(sortByCol){
 		  case 0: //char* color;
         if(strcmp((*head)->color,((*head)->next)-> color)>0){
          return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -259,7 +260,7 @@ mergesort(Record ** head, int sortByCol)
         if(strcmp((*head)->director_name,((*head)->next)-> director_name)>0){
           return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -268,7 +269,7 @@ mergesort(Record ** head, int sortByCol)
   		  if(((*head)->num_critic_for_reviews) < (((*head)->next)-> num_critic_for_reviews)){
   			 return;
   		  }
-  		  Record * temp = (*head)->next;
+  		  temp = (*head)->next;
   		  temp->next = *head;
   		  (*head)->next = NULL;
   		  *head = temp;
@@ -277,7 +278,7 @@ mergesort(Record ** head, int sortByCol)
         if(((*head)->duration) < (((*head)->next)-> duration)){
         return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -286,7 +287,7 @@ mergesort(Record ** head, int sortByCol)
         if(((*head)->director_facebook_likes) < (((*head)->next)->director_facebook_likes)){
         return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -295,7 +296,7 @@ mergesort(Record ** head, int sortByCol)
         if(((*head)->actor_3_facebook_likes) < (((*head)->next)-> actor_3_facebook_likes)){
         return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -304,7 +305,7 @@ mergesort(Record ** head, int sortByCol)
         if(strcmp((*head)->actor_2_name,((*head)->next)-> actor_2_name)>0){
          return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -313,7 +314,7 @@ mergesort(Record ** head, int sortByCol)
         if(((*head)->actor_1_facebook_likes) < (((*head)->next)->actor_1_facebook_likes)){
         return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -322,7 +323,7 @@ mergesort(Record ** head, int sortByCol)
         if(((*head)->gross) < (((*head)->next)-> gross)){
         return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -331,7 +332,7 @@ mergesort(Record ** head, int sortByCol)
         if(strcmp((*head)->genres,((*head)->next)->genres)>0){
           return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -340,7 +341,7 @@ mergesort(Record ** head, int sortByCol)
         if(strcmp(((*head)->actor_1_name),((*head)->next)-> actor_1_name)>0){
           return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -349,7 +350,7 @@ mergesort(Record ** head, int sortByCol)
         if(strcmp((*head)->movie_title,((*head)->next)->movie_title)>0){
           return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -358,7 +359,7 @@ mergesort(Record ** head, int sortByCol)
         if(((*head)->num_voted_users) < (((*head)->next)-> num_voted_users)){
         return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -367,7 +368,7 @@ mergesort(Record ** head, int sortByCol)
         if(((*head)->cast_total_facebook_likes) < (((*head)->next)-> cast_total_facebook_likes)){
         return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -376,7 +377,7 @@ mergesort(Record ** head, int sortByCol)
         if(strcmp((*head)->actor_3_name,((*head)->next)-> actor_3_name)>0){
           return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -385,7 +386,7 @@ mergesort(Record ** head, int sortByCol)
         if(((*head)->facenumber_in_poster) < (((*head)->next)-> facenumber_in_poster)){
         return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -394,7 +395,7 @@ mergesort(Record ** head, int sortByCol)
         if(strcmp((*head)->plot_keywords,((*head)->next)-> plot_keywords)>0){
           return;
           }
-          Record * temp = (*head)->next;
+          temp = (*head)->next;
           temp->next = *head;
           (*head)->next = NULL;
           *head = temp;
@@ -403,7 +404,7 @@ mergesort(Record ** head, int sortByCol)
         if(strcmp((*head)->movie_imdb_link,((*head)->next)-> movie_imdb_link)>0){
           return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -412,7 +413,7 @@ mergesort(Record ** head, int sortByCol)
         if(((*head)->num_user_for_reviews) < (((*head)->next)-> num_user_for_reviews)){
         return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -421,7 +422,7 @@ mergesort(Record ** head, int sortByCol)
         if(strcmp((*head)->language,((*head)->next)-> language)>0){
           return;
           }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -430,7 +431,7 @@ mergesort(Record ** head, int sortByCol)
         if(strcmp((*head)->country,((*head)->next)-> country)>0){
           return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -439,7 +440,7 @@ mergesort(Record ** head, int sortByCol)
         if(strcmp((*head)->content_rating,((*head)->next)-> content_rating)>0){
           return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -448,7 +449,7 @@ mergesort(Record ** head, int sortByCol)
         if(((*head)->budget) < (((*head)->next)-> budget)){
         return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -457,7 +458,7 @@ mergesort(Record ** head, int sortByCol)
         if(((*head)->title_year) < (((*head)->next)-> title_year)){
         return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -466,7 +467,7 @@ mergesort(Record ** head, int sortByCol)
         if(((*head)->actor_2_facebook_likes) < (((*head)->next)-> actor_2_facebook_likes)){
         return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -475,7 +476,7 @@ mergesort(Record ** head, int sortByCol)
         if(((*head)->imdb_score) < (((*head)->next)-> imdb_score)){
           return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -484,7 +485,7 @@ mergesort(Record ** head, int sortByCol)
         if(((*head)->aspect_ratio) < (((*head)->next)-> aspect_ratio)){
           return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
@@ -493,7 +494,7 @@ mergesort(Record ** head, int sortByCol)
         if(((*head)->movie_facebook_likes) < (((*head)->next)-> movie_facebook_likes)){
           return;
         }
-        Record * temp = (*head)->next;
+        temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
