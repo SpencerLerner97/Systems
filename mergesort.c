@@ -503,6 +503,10 @@ mergesort(Record ** head, int sortByCol)
 	if(size == 1){
 		return;
 	}
+
+}
 }
 
+void main(){
+}
 
