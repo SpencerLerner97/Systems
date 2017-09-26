@@ -40,29 +40,20 @@ int main(int argc, char *argv[]){
           token[0] = '\0';
           if(end != start){ //if end == start, this is an empty entry
             token = (char *)realloc(token, sizeof(char) * (end-start));
-            if(line[start] == '"' && line[end-1] == '"'){ //trims quotes
-              //trim whitespace
-              int tempEnd = end;
-              while(isspace(line[tempEnd - 1])){
-                tempEnd--;
-              }
-              while(isspace(line[start+1])){
-                start++;
-              }
-              line[end - 1] = '\0';
-              memcpy(token, line + start + 1, end - start - 1);
+            int tempEnd = end - 1;
+            if(line[start] == '"' && line[end-1] == '"'){ //trim quotes
+              tempEnd--;
+              start++;
             }
-            else{
-              //trim whitespace
-              int tempEnd = end;
-              while(isspace(line[tempEnd])){
-                tempEnd--;
-              }
-              while(isspace(line[start])){
-                start++;
-              }
-              memcpy(token, line + start, tempEnd - start);
+            //trim whitespace
+            while(isspace(line[tempEnd])){
+              tempEnd--;
             }
+            while(isspace(line[start])){
+              start++;
+            }
+            line[tempEnd-1] = '\0';
+            memcpy(token, line + start, tempEnd - start);
           }
           switch(colId){
             case 0:
@@ -159,6 +150,18 @@ int main(int argc, char *argv[]){
       }
       end++;
     }
+    //add final column
+    char * token = (char *)malloc(sizeof(char) * (end-start));
+    int tempEnd = end;
+    while(isspace(line[tempEnd])){
+      tempEnd--;
+    }
+    while(isspace(line[start])){
+      start++;
+    }
+    memcpy(token, line + start, tempEnd - start + 1);
+    head->movie_facebook_likes = token[0] == '\0' ? -1 : atoi(token);
+
     //create a struct
     head->next = prevRec;
     prevRec = head;
@@ -174,11 +177,11 @@ int main(int argc, char *argv[]){
   "budget,title_year,actor_2_facebook_likes,imdb_score,aspect_ratio,movie_facebook_likes\n");
 
   while(head->next != NULL){
-    printf("%d\n", head->movie_facebook_likes);//THIS ISNT GETTING POPULATED!!!
     Record * r = head;
-    if(strchr(r->movie_title, ',') == NULL){ //no commas in this movie title
+    printf("%s\n", r->movie_title);
+    /*if(strchr(r->movie_title, ',') == NULL){ //no commas in this movie title
       printf("%s,%s,%d,%d,%d,%d,%s,%d,%d,%s,%s,%s,%d,%d,%s,%d,%s,%s,%d,%s,%s,%s,%d,%d,%d,%f,%f,%d\n",
-            r->color, r->director_name, r->num_critic_for_reviews, r->duration,
+            r->director_name, r->director_name, r->num_critic_for_reviews, r->duration,
             r->director_facebook_likes, r->actor_3_facebook_likes, r->actor_2_name,
             r->actor_1_facebook_likes, r->gross, r->genres, r->actor_1_name,
             r->movie_title, r->num_voted_users, r->cast_total_facebook_likes,
@@ -189,7 +192,7 @@ int main(int argc, char *argv[]){
     }
     else{ //put quotes around the movie title
       printf("%s,%s,%d,%d,%d,%d,%s,%d,%d,%s,%s,\"%s\",%d,%d,%s,%d,%s,%s,%d,%s,%s,%s,%d,%d,%d,%f,%f,%d\n",
-            r->color, r->director_name, r->num_critic_for_reviews, r->duration,
+            r->director_name, r->director_name, r->num_critic_for_reviews, r->duration,
             r->director_facebook_likes, r->actor_3_facebook_likes, r->actor_2_name,
             r->actor_1_facebook_likes, r->gross, r->genres, r->actor_1_name,
             r->movie_title, r->num_voted_users, r->cast_total_facebook_likes,
@@ -197,62 +200,10 @@ int main(int argc, char *argv[]){
             r->num_user_for_reviews,r->language, r->country, r->content_rating,
             r->budget, r->title_year, r->actor_2_facebook_likes, r->imdb_score,
             r->aspect_ratio, r->movie_facebook_likes);
-    }
+    }*/
     Record * temp = head;
     head = head->next;
     free(temp);
   }
   return 0;
 }
-
-/*free(head->color);
-free(head->director_name);
-free(head->num_critic_for_reviews);
-free(head->duration);
-free(head->director_facebook_likes);
-free(head->actor_3_facebook_likes);
-free(head->actor_2_name);
-free(head->gross);
-free(head->genres);
-free(head->actor_1_name);
-free(head->movie_title);
-free(head->num_voted_users);
-free(head->cast_total_facebook_likes);
-free(head->actor_3_name);
-free(head->facenumber_in_poster);
-free(head->plot_keywords);
-free(head->movie_imdb_link);
-free(head->num_user_for_reviews);
-free(head->language);
-free(head->country);
-free(head->content_rating);
-free(head->budget);
-free(head->title_year);
-free(head->actor_2_facebook_likes);
-free(head->imdb_score);
-free(head->aspect_ratio);
-free(head->movie_facebook_likes);head->num_critic_for_reviews);
-free(head->duration);
-free(head->director_facebook_likes);
-free(head->actor_3_facebook_likes);
-free(head->actor_2_name);
-free(head->gross);
-free(head->genres);
-free(head->actor_1_name);
-free(head->movie_title);
-free(head->num_voted_users);
-free(head->cast_total_facebook_likes);
-free(head->actor_3_name);
-free(head->facenumber_in_poster);
-free(head->plot_keywords);
-free(head->movie_imdb_link);
-free(head->num_user_for_reviews);
-free(head->language);
-free(head->country);
-free(head->content_rating);
-free(head->budget);
-free(head->title_year);
-free(head->actor_2_facebook_likes);
-free(head->imdb_score);
-free(head->aspect_ratio);
-free(head->movie_facebook_likes);*/
