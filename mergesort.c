@@ -1,38 +1,49 @@
 #include "Sorter.h"
 #include <string.h>
+
 int
 count(Record ** head)
 {//count how many things are in the list
 	int c=0;
 	while(*head){
-		head  = &(**head).next;
+		if(c < 100){
+			printf("%s\n",(**head).genres);
+		}
+		head = &(**head).next;
 		++c;
 	}
+	//printf("%d\n",c);
 	return c;
+	
 }
 
-void
-split(Record ** head, Record ** secondHead, int count)
+Record **
+split(Record ** head, int count)
 {//this 2nd head should be an empty pointer. Count should be the number of elemnts in the list
+	Record ** secondHead;
 	int iter; Record ** temp = head;
 	for(iter = count/2; iter >0; iter --){
 		temp = &(**temp).next;
 	}
-	*secondHead = (*temp)->next;
+	secondHead = &((*temp)->next);
 	(*temp)->next = NULL;
+	return secondHead;
 }
 
 Record **
 merge(Record ** head, Record ** secondHead, int sortBycol)
 {//merge the two lists. Based on sort By col. Sort by col is a zer indexed integer that gives me which column in the struct we are sorting by.
-      if(*head == NULL){
+	//printf("%s\n",(**head).genres);
+      printf("H1, %p\n, H2 %p\n",head,secondHead);
+      if(!(*head)){
           return secondHead;
         }
-      if(*secondHead == NULL){
+      if(!(*secondHead)){
         return head;
       }
   switch(sortBycol)
   {
+  //printf("sortBycol");
 		case 0: //char* color;
       if(strcmp(((*head)->color),((*head)->next)-> color)>0){
         (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
@@ -229,7 +240,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *merge(head,&((*secondHead)->next),sortBycol);
           return secondHead;
 		default:
-					return head;
+			return head;
   }
 }
 
@@ -239,15 +250,15 @@ mergesort(Record ** head, int sortByCol)
  {//mergesort on head done by which column. COlumn is currently a string but we may swithc it to a int.
 	 int size = count(head);
 	 if(size > 2){//the general case of a list with more than 2 items
-		Record ** secondHead = head;
-		split(head,secondHead,size);
+		Record ** secondHead;
+		secondHead = split(head,size);
 		mergesort(head,sortByCol);
 		mergesort(secondHead,sortByCol);
 		merge(head,secondHead,sortByCol);
 
 	}
 	if(size == 2){ //if list has two items check, maybe swap and than get out.
-    Record * temp;
+		Record * temp;
 		switch(sortByCol){
 		  case 0: //char* color;
         if(strcmp((*head)->color,((*head)->next)-> color)>0){
