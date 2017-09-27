@@ -46,14 +46,19 @@ int main(int argc, char *argv[]){
             }
             tempEnd++;//move past last valid character
             //trim whitespace
-            while(isspace(line[tempEnd])){
+            while(isspace(line[tempEnd-1])){
               tempEnd--;
             }
             while(isspace(line[start])){
               start++;
             }
+            if(line[tempEnd - 1] == ' '){
+              line[tempEnd - 1] = '\0';
+            }
+            else{
+              line[tempEnd] = '\0';
+            }
             token = (char *)realloc(token, sizeof(char) * (tempEnd-start+1));
-            line[tempEnd] = '\0';
             memcpy(token, line + start, tempEnd - start+1);
           }
           switch(colId){
@@ -198,17 +203,10 @@ int main(int argc, char *argv[]){
   else if(strcmp(sortByCol, "imdb_score")==0)sortInt=25;
   else if(strcmp(sortByCol, "aspect_ratio")==0)sortInt=27;
   else if(strcmp(sortByCol, "movie_facebook_likes")==0)sortInt=27;
-
-  Record * head2 = head;
-  while(head2->next != NULL){
-    printf("%d\n", head2->duration);
-    head2 = head2->next;
-  }
-
   //mergesort(&head, sortInt);
 
   //print CSV to stdout
-  /*printf("color,director_name,num_critic_for_reviews,duration,director_facebook_likes,"
+  printf("color,director_name,num_critic_for_reviews,duration,director_facebook_likes,"
   "actor_3_facebook_likes,actor_2_name,actor_1_facebook_likes,gross,genres,actor_1_name,"
   "movie_title,num_voted_users,cast_total_facebook_likes,actor_3_name,facenumber_in_poster,"
   "plot_keywords,movie_imdb_link,num_user_for_reviews,language,country,content_rating,"
@@ -216,31 +214,98 @@ int main(int argc, char *argv[]){
 
   while(head->next != NULL){
     Record * r = head;
+    char numCritic[50] = "";
+    char duration[50] = "";
+    char directLikes[50] = "";
+    char actor3Likes[50] = "";
+    char actor1Likes[50] = "";
+    char gross[50] = "";
+    char numVoted[50] = "";
+    char castLikes[50] = "";
+    char faceNumber[50] = "";
+    char numReviews[50] = "";
+    char budget[50] = "";
+    char actor2Likes[50] = "";
+    char titleYear[50] = "";
+    char imdbScore[50] = "";
+    char aspectRatio[50] = "";
+    char movieLikes[50] = "";
+
+
+    if(r->num_critic_for_reviews != -1){
+        snprintf(numCritic, 5000, "%d",r->num_critic_for_reviews);
+    }
+    if(r->duration != -1){
+        snprintf(duration, 5000, "%d",r->duration);
+    }
+    if(r->director_facebook_likes != -1){
+        snprintf(directLikes, 5000, "%d",r->director_facebook_likes);
+    }
+    if(r->actor_3_facebook_likes != -1){
+        snprintf(actor3Likes, 5000, "%d",r->actor_3_facebook_likes);
+    }
+    if(r->actor_1_facebook_likes != -1){
+        snprintf(actor1Likes, 5000, "%d",r->actor_1_facebook_likes);
+    }
+    if(r->gross != -1){
+        snprintf(gross, 5000, "%d",r->gross);
+    }
+    if(r->num_voted_users != -1){
+        snprintf(numVoted, 5000, "%d",r->num_voted_users);
+    }
+    if(r->cast_total_facebook_likes != -1){
+        snprintf(castLikes, 5000, "%d",r->cast_total_facebook_likes);
+    }
+    if(r->facenumber_in_poster != -1){
+        snprintf(faceNumber, 5000, "%d",r->facenumber_in_poster);
+    }
+    if(r->num_critic_for_reviews != -1){
+        snprintf(numReviews, 5000, "%d",r->num_critic_for_reviews);
+    }
+    if(r->budget != -1){
+        snprintf(budget, 5000, "%d",r->budget);
+    }
+    if(r->actor_2_facebook_likes != -1){
+        snprintf(actor2Likes, 5000, "%d",r->actor_2_facebook_likes);
+    }
+    if(r->title_year != -1){
+        snprintf(titleYear, 5000, "%d",r->title_year);
+    }
+    if(r->imdb_score != -1){
+        snprintf(imdbScore, 5000, "%f",r->imdb_score);
+    }
+    if(r->aspect_ratio != -1){
+        snprintf(aspectRatio, 5000, "%f",r->aspect_ratio);
+    }
+    if(r->movie_facebook_likes != -1){
+        snprintf(movieLikes, 5000, "%d",r->movie_facebook_likes);
+    }
+
     if(strchr(r->movie_title, ',') == NULL){ //no commas in this movie title
-      printf("%s,%s,%d,%d,%d,%d,%s,%d,%d,%s,%s,%s,%d,%d,%s,%d,%s,%s,%d,%s,%s,%s,%d,%d,%d,%f,%f,%d\n",
-            r->director_name, r->director_name, r->num_critic_for_reviews, r->duration,
-            r->director_facebook_likes, r->actor_3_facebook_likes, r->actor_2_name,
-            r->actor_1_facebook_likes, r->gross, r->genres, r->actor_1_name,
-            r->movie_title, r->num_voted_users, r->cast_total_facebook_likes,
-            r->actor_3_name, r->facenumber_in_poster, r->plot_keywords, r->movie_imdb_link,
-            r->num_user_for_reviews,r->language, r->country, r->content_rating,
-            r->budget, r->title_year, r->actor_2_facebook_likes, r->imdb_score,
-            r->aspect_ratio, r->movie_facebook_likes);
+      printf("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
+            r->color, r->director_name, numCritic, duration,
+            directLikes, actor3Likes, r->actor_2_name,
+            actor1Likes, gross, r->genres, r->actor_1_name,
+            r->movie_title, numVoted, castLikes,
+            r->actor_3_name, faceNumber, r->plot_keywords, r->movie_imdb_link,
+            numReviews,r->language, r->country, r->content_rating,
+            budget, titleYear, actor2Likes, imdbScore,
+            aspectRatio, movieLikes);
     }
     else{ //put quotes around the movie title
-      printf("%s,%s,%d,%d,%d,%d,%s,%d,%d,%s,%s,\"%s\",%d,%d,%s,%d,%s,%s,%d,%s,%s,%s,%d,%d,%d,%f,%f,%d\n",
-            r->director_name, r->director_name, r->num_critic_for_reviews, r->duration,
-            r->director_facebook_likes, r->actor_3_facebook_likes, r->actor_2_name,
-            r->actor_1_facebook_likes, r->gross, r->genres, r->actor_1_name,
-            r->movie_title, r->num_voted_users, r->cast_total_facebook_likes,
-            r->actor_3_name, r->facenumber_in_poster, r->plot_keywords, r->movie_imdb_link,
-            r->num_user_for_reviews,r->language, r->country, r->content_rating,
-            r->budget, r->title_year, r->actor_2_facebook_likes, r->imdb_score,
-            r->aspect_ratio, r->movie_facebook_likes);
+      printf("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,\"%s\",%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
+              r->color, r->director_name, numCritic, duration,
+              directLikes, actor3Likes, r->actor_2_name,
+              actor1Likes, gross, r->genres, r->actor_1_name,
+              r->movie_title, numVoted, castLikes,
+              r->actor_3_name, faceNumber, r->plot_keywords, r->movie_imdb_link,
+              numReviews,r->language, r->country, r->content_rating,
+              budget, titleYear, actor2Likes, imdbScore,
+              aspectRatio, movieLikes);
     }
     Record * temp = head;
     head = head->next;
     free(temp);
-  }*/
+  }
   return 0;
 }
