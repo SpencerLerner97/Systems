@@ -203,11 +203,7 @@ int main(int argc, char *argv[]){
   else if(strcmp(sortByCol, "imdb_score")==0)sortInt=25;
   else if(strcmp(sortByCol, "aspect_ratio")==0)sortInt=27;
   else if(strcmp(sortByCol, "movie_facebook_likes")==0)sortInt=27;
-<<<<<<< HEAD
   //mergesort(&head, sortInt);
-=======
-	mergesort(&head, sortInt);
->>>>>>> 6d8040274716d67e5d541a99558a7692195c1dc0
 
   //print CSV to stdout
   printf("color,director_name,num_critic_for_reviews,duration,director_facebook_likes,"
