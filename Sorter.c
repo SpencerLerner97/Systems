@@ -39,12 +39,12 @@ int main(int argc, char *argv[]){
           char * token = (char *)malloc(sizeof(char));
           token[0] = '\0';
           if(end != start){ //if end == start, this is an empty entry
-            token = (char *)realloc(token, sizeof(char) * (end-start));
             int tempEnd = end - 1;
             if(line[start] == '"' && line[end-1] == '"'){ //trim quotes
               tempEnd--;
               start++;
             }
+            tempEnd++;//move past last valid character
             //trim whitespace
             while(isspace(line[tempEnd])){
               tempEnd--;
@@ -52,8 +52,9 @@ int main(int argc, char *argv[]){
             while(isspace(line[start])){
               start++;
             }
-            line[tempEnd-1] = '\0';
-            memcpy(token, line + start, tempEnd - start);
+            token = (char *)realloc(token, sizeof(char) * (tempEnd-start+1));
+            line[tempEnd] = '\0';
+            memcpy(token, line + start, tempEnd - start+1);
           }
           switch(colId){
             case 0:
@@ -197,10 +198,17 @@ int main(int argc, char *argv[]){
   else if(strcmp(sortByCol, "imdb_score")==0)sortInt=25;
   else if(strcmp(sortByCol, "aspect_ratio")==0)sortInt=27;
   else if(strcmp(sortByCol, "movie_facebook_likes")==0)sortInt=27;
-  mergesort(&head, sortInt);
+
+  Record * head2 = head;
+  while(head2->next != NULL){
+    printf("%d\n", head2->duration);
+    head2 = head2->next;
+  }
+
+  //mergesort(&head, sortInt);
 
   //print CSV to stdout
-  printf("color,director_name,num_critic_for_reviews,duration,director_facebook_likes,"
+  /*printf("color,director_name,num_critic_for_reviews,duration,director_facebook_likes,"
   "actor_3_facebook_likes,actor_2_name,actor_1_facebook_likes,gross,genres,actor_1_name,"
   "movie_title,num_voted_users,cast_total_facebook_likes,actor_3_name,facenumber_in_poster,"
   "plot_keywords,movie_imdb_link,num_user_for_reviews,language,country,content_rating,"
@@ -233,6 +241,6 @@ int main(int argc, char *argv[]){
     Record * temp = head;
     head = head->next;
     free(temp);
-  }
+  }*/
   return 0;
 }
