@@ -9,12 +9,12 @@
 int main(int argc, char *argv[]){
   //make sure we have all 3 args
   if(argc != 3){
-    printf("Missing arguments. Usage is: 'cat input.file | ./sorter -c  movie_title'\n");
+    printf("Missing arguments. Usage is: 'cat input.file | ./sorter -c  [column]'\n");
     return 0;
   }
   //sorter can only support column sorting right now
   if(strcmp(argv[1], "-c") != 0){
-    printf("Usage is: 'cat input.file | ./sorter -c  movie_title'\n");
+    printf("Usage is: 'cat input.file | ./sorter -c [column]'\n");
   }
   const char * sortByCol = argv[2];
   char * line = NULL;
@@ -203,7 +203,9 @@ int main(int argc, char *argv[]){
   else if(strcmp(sortByCol, "imdb_score")==0)sortInt=25;
   else if(strcmp(sortByCol, "aspect_ratio")==0)sortInt=27;
   else if(strcmp(sortByCol, "movie_facebook_likes")==0)sortInt=27;
-  //mergesort(&head, sortInt);
+
+  //sort the linked list based off of sort column
+  mergesort(&head, sortInt);
 
   //print CSV to stdout
   printf("color,director_name,num_critic_for_reviews,duration,director_facebook_likes,"
@@ -305,6 +307,33 @@ int main(int argc, char *argv[]){
     }
     Record * temp = head;
     head = head->next;
+    /*free(&temp->color);
+    free(&temp->director_name);
+    free(&temp->num_critic_for_reviews);
+    free(&temp->duration);
+    free(&temp->director_facebook_likes);
+    free(&temp->actor_3_facebook_likes);
+    free(&temp->actor_2_name);
+    free(&temp->gross);
+    free(&temp->genres);
+    free(&temp->actor_1_name);
+    free(&temp->movie_title);
+    free(&temp->num_voted_users);
+    free(&temp->cast_total_facebook_likes);
+    free(&temp->actor_3_name);
+    free(&temp->facenumber_in_poster);
+    free(&temp->plot_keywords);
+    free(&temp->movie_imdb_link);
+    free(&temp->num_user_for_reviews);
+    free(&temp->language);
+    free(&temp->country);
+    free(&temp->content_rating);
+    free(&temp->budget);
+    free(&temp->title_year);
+    free(&temp->actor_2_facebook_likes);
+    free(&temp->imdb_score);
+    free(&temp->aspect_ratio);
+    free(&temp->movie_facebook_likes);*/
     free(temp);
   }
   return 0;
