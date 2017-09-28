@@ -66,7 +66,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
 	  switch(sortBycol)
   {
 		case 0: //char* color;
-      if(strcmp(((*head)->color),((*secondHead)-> color))<0){
+      if(strcmp(((*head)->color),((*secondHead)-> color))<=0){
            if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -81,7 +81,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 1: //char* director_name;
-      if(strcmp(((*head)->director_name),((*secondHead)-> director_name))<0){
+      if(strcmp(((*head)->director_name),((*secondHead)-> director_name))<=0){
                if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -96,7 +96,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 2: //int num_critic_for_reviews;
-      if(((*head)->num_critic_for_reviews) < (((*secondHead)-> num_critic_for_reviews))){
+      if(((*head)->num_critic_for_reviews) <= (((*secondHead)-> num_critic_for_reviews))){
               if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -111,7 +111,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 3: //int duration;
-       if(((*head)->duration) < (((*secondHead)-> duration))){
+       if(((*head)->duration) <= (((*secondHead)-> duration))){
               if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -126,7 +126,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 4: //int director_facebook_likes;
-       if(((*head)->director_facebook_likes) < (((*secondHead)->director_facebook_likes))){
+       if(((*head)->director_facebook_likes) <= (((*secondHead)->director_facebook_likes))){
               if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -141,7 +141,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 5: //int actor_3_facebook_likes;
-       if(((*head)->actor_3_facebook_likes) < (((*secondHead)-> actor_3_facebook_likes))){
+       if(((*head)->actor_3_facebook_likes) <= (((*secondHead)-> actor_3_facebook_likes))){
             if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -156,7 +156,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 6: //char * actor_2_name;
-      if(strcmp(((*head)->actor_2_name),((*secondHead)-> actor_2_name))<0){
+      if(strcmp(((*head)->actor_2_name),((*secondHead)-> actor_2_name))<=0){
               if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -171,7 +171,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 7: //int actor_1_facebook_likes;
-       if(((*head)->actor_1_facebook_likes) < ((*secondHead)-> actor_1_facebook_likes)){
+       if(((*head)->actor_1_facebook_likes) <= ((*secondHead)-> actor_1_facebook_likes)){
             if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -186,7 +186,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 8: //int gross;
-       if(((*head)->gross) < (((*secondHead)-> gross))){
+       if(((*head)->gross) <= (((*secondHead)-> gross))){
               if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -216,7 +216,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 10: //char * actor_1_name;
-      if(strcmp(((*head)->actor_1_name),((*secondHead)-> actor_1_name))<0){
+      if(strcmp(((*head)->actor_1_name),((*secondHead)-> actor_1_name))<=0){
                 if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -232,7 +232,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           return secondHead;
   	case 11: //char * movie_title;
   	//puts("heree");
-      if(strcmp(((*head)->movie_title),((*secondHead)-> movie_title))<0){
+      if(strcmp(((*head)->movie_title),((*secondHead)-> movie_title))<=0){
             if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -247,7 +247,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 12: //int num_voted_users;
-       if(((*head)->num_voted_users) < (((*secondHead)-> num_voted_users))){
+       if(((*head)->num_voted_users) <= (((*secondHead)-> num_voted_users))){
               if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -262,7 +262,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 13: //int cast_total_facebook_likes;
-       if(((*head)->cast_total_facebook_likes) < (((*secondHead)->cast_total_facebook_likes))){
+       if(((*head)->cast_total_facebook_likes) <= (((*secondHead)->cast_total_facebook_likes))){
              if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -277,7 +277,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 14: //char * actor_3_name;
-      if(strcmp(((*head)->actor_3_name),((*secondHead)-> actor_3_name))<0){
+      if(strcmp(((*head)->actor_3_name),((*secondHead)-> actor_3_name))<=0){
               if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -292,7 +292,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 15: //int facenumber_in_poster;
-       if(((*head)->facenumber_in_poster) < (((*secondHead)-> facenumber_in_poster))){
+       if(((*head)->facenumber_in_poster) <= (((*secondHead)-> facenumber_in_poster))){
              if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -307,7 +307,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 16: //char * plot_keywords;
-      if(strcmp(((*head)->plot_keywords),((*secondHead)->plot_keywords))<0){
+      if(strcmp(((*head)->plot_keywords),((*secondHead)->plot_keywords))<=0){
                if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -322,7 +322,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 17: //char * movie_imdb_link;
-       if(strcmp(((*head)->movie_imdb_link),((*secondHead)->movie_imdb_link))<0){
+       if(strcmp(((*head)->movie_imdb_link),((*secondHead)->movie_imdb_link))<=0){
                if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -337,7 +337,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 18: //int num_user_for_reviews;
-        if(((*head)->num_user_for_reviews) < (((*secondHead)-> num_user_for_reviews))){
+        if(((*head)->num_user_for_reviews) <= (((*secondHead)-> num_user_for_reviews))){
               if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -352,7 +352,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 19: //char * language;
-       if(strcmp(((*head)->language),((*secondHead)->language))<0){
+       if(strcmp(((*head)->language),((*secondHead)->language))<=0){
                 if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -367,7 +367,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 20: //char * country;
-       if(strcmp(((*head)->country),((*secondHead)->country))<0){
+       if(strcmp(((*head)->country),((*secondHead)->country))<=0){
                if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -378,7 +378,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *merge(head,&((*secondHead)->next),sortBycol);
           return secondHead;
   	case 21: //char * content_rating;
-       if(strcmp(((*head)->content_rating),((*head)->next)->content_rating)<0){
+       if(strcmp(((*head)->content_rating),((*head)->next)->content_rating)<=0){
               if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -393,7 +393,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 22: //int budget;
-       if(((*head)->budget) < (((*secondHead)-> budget))){
+       if(((*head)->budget) <= (((*secondHead)-> budget))){
              if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -408,7 +408,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 23: //int title_year;
-       if(((*head)->title_year) < (((*secondHead)->title_year))){
+       if(((*head)->title_year) <= (((*secondHead)->title_year))){
              if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -423,7 +423,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 24: //int actor_2_facebook_likes;
-       if(((*head)->actor_2_facebook_likes) < (((*secondHead)-> actor_2_facebook_likes))){
+       if(((*head)->actor_2_facebook_likes) <= (((*secondHead)-> actor_2_facebook_likes))){
               if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -438,7 +438,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 25: //float imdb_score;
-       if(((*head)->imdb_score) < (((*secondHead)-> imdb_score))){
+       if(((*head)->imdb_score) <= (((*secondHead)-> imdb_score))){
              if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -453,7 +453,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 26: //float aspect_ratio;
-       if(((*head)->aspect_ratio) < (((*secondHead)-> aspect_ratio))){
+       if(((*head)->aspect_ratio) <= (((*secondHead)-> aspect_ratio))){
              if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -468,7 +468,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
           (*secondHead)->next = *head;
           return secondHead;
   	case 27: //int movie_facebook_likes;
-       if(((*head)->movie_facebook_likes) < (((*secondHead)-> movie_facebook_likes))){
+       if(((*head)->movie_facebook_likes) <= (((*secondHead)-> movie_facebook_likes))){
             if(s1 == 0){
             (*head)->next = *merge(&(*head)->next,secondHead,sortBycol);
             return head;
@@ -505,7 +505,7 @@ mergesort(Record ** head, int sortByCol)
 		Record * temp;
 		switch(sortByCol){
 		  case 0: //char* color;
-        if(strcmp((*head)->color,((*head)->next)-> color)<0){
+        if(strcmp((*head)->color,((*head)->next)-> color)<=0){
          return;
         }
         temp = (*head)->next;
@@ -514,7 +514,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 1: //char* director_name;
-        if(strcmp((*head)->director_name,((*head)->next)-> director_name)<0){
+        if(strcmp((*head)->director_name,((*head)->next)-> director_name)<=0){
           return;
         }
         temp = (*head)->next;
@@ -523,7 +523,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 2: //int num_critic_for_reviews;
-  		  if(((*head)->num_critic_for_reviews) < (((*head)->next)-> num_critic_for_reviews)){
+  		  if(((*head)->num_critic_for_reviews) <= (((*head)->next)-> num_critic_for_reviews)){
   			 return;
   		  }
   		  temp = (*head)->next;
@@ -532,7 +532,7 @@ mergesort(Record ** head, int sortByCol)
   		  *head = temp;
   		  return;
   		case 3: //int duration;
-        if(((*head)->duration) < (((*head)->next)-> duration)){
+        if(((*head)->duration) <= (((*head)->next)-> duration)){
         return;
         }
         temp = (*head)->next;
@@ -541,7 +541,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 4: //int director_facebook_likes;
-        if(((*head)->director_facebook_likes) < (((*head)->next)->director_facebook_likes)){
+        if(((*head)->director_facebook_likes) <= (((*head)->next)->director_facebook_likes)){
         return;
         }
         temp = (*head)->next;
@@ -550,7 +550,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 5: //int actor_3_facebook_likes;
-        if(((*head)->actor_3_facebook_likes) < (((*head)->next)-> actor_3_facebook_likes)){
+        if(((*head)->actor_3_facebook_likes) <= (((*head)->next)-> actor_3_facebook_likes)){
         return;
         }
         temp = (*head)->next;
@@ -559,7 +559,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 6: //char * actor_2_name;
-        if(strcmp((*head)->actor_2_name,((*head)->next)-> actor_2_name)<0){
+        if(strcmp((*head)->actor_2_name,((*head)->next)-> actor_2_name)<=0){
          return;
         }
         temp = (*head)->next;
@@ -568,7 +568,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 7: //int actor_1_facebook_likes;
-        if(((*head)->actor_1_facebook_likes) < (((*head)->next)->actor_1_facebook_likes)){
+        if(((*head)->actor_1_facebook_likes) <= (((*head)->next)->actor_1_facebook_likes)){
         return;
         }
         temp = (*head)->next;
@@ -577,7 +577,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 8: //int gross;
-        if(((*head)->gross) < (((*head)->next)-> gross)){
+        if(((*head)->gross) <= (((*head)->next)-> gross)){
         return;
         }
         temp = (*head)->next;
@@ -586,7 +586,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 9: //char * genres;
-        if(strcmp((*head)->genres,((*head)->next)->genres)<0){
+        if(strcmp((*head)->genres,((*head)->next)->genres)<=0){
           return;
         }
         temp = (*head)->next;
@@ -595,7 +595,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 10: //char * actor_1_name;
-        if(strcmp(((*head)->actor_1_name),((*head)->next)-> actor_1_name)<0){
+        if(strcmp(((*head)->actor_1_name),((*head)->next)-> actor_1_name)<=0){
           return;
         }
         temp = (*head)->next;
@@ -604,7 +604,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 11: //char * movie_title;
-        if(strcmp((*head)->movie_title,((*head)->next)->movie_title)<0){
+        if(strcmp((*head)->movie_title,((*head)->next)->movie_title)<=0){
           return;
         }
         temp = (*head)->next;
@@ -613,7 +613,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 12: //int num_voted_users;
-        if(((*head)->num_voted_users) < (((*head)->next)-> num_voted_users)){
+        if(((*head)->num_voted_users) <= (((*head)->next)-> num_voted_users)){
         return;
         }
         temp = (*head)->next;
@@ -622,7 +622,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 13: //int cast_total_facebook_likes;
-        if(((*head)->cast_total_facebook_likes) < (((*head)->next)-> cast_total_facebook_likes)){
+        if(((*head)->cast_total_facebook_likes) <= (((*head)->next)-> cast_total_facebook_likes)){
         return;
         }
         temp = (*head)->next;
@@ -631,7 +631,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 14: //char * actor_3_name;
-        if(strcmp((*head)->actor_3_name,((*head)->next)-> actor_3_name)<0){
+        if(strcmp((*head)->actor_3_name,((*head)->next)-> actor_3_name)<=0){
           return;
         }
         temp = (*head)->next;
@@ -640,7 +640,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 15: //int facenumber_in_poster;
-        if(((*head)->facenumber_in_poster) < (((*head)->next)-> facenumber_in_poster)){
+        if(((*head)->facenumber_in_poster) <= (((*head)->next)-> facenumber_in_poster)){
         return;
         }
         temp = (*head)->next;
@@ -649,7 +649,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 16: //char * plot_keywords;
-        if(strcmp((*head)->plot_keywords,((*head)->next)-> plot_keywords)<0){
+        if(strcmp((*head)->plot_keywords,((*head)->next)-> plot_keywords)<=0){
           return;
           }
           temp = (*head)->next;
@@ -658,7 +658,7 @@ mergesort(Record ** head, int sortByCol)
           *head = temp;
           return;
   		case 17: //char * movie_imdb_link;
-        if(strcmp((*head)->movie_imdb_link,((*head)->next)-> movie_imdb_link)<0){
+        if(strcmp((*head)->movie_imdb_link,((*head)->next)-> movie_imdb_link)<=0){
           return;
         }
         temp = (*head)->next;
@@ -667,7 +667,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 18: //int num_user_for_reviews;
-        if(((*head)->num_user_for_reviews) < (((*head)->next)-> num_user_for_reviews)){
+        if(((*head)->num_user_for_reviews) <= (((*head)->next)-> num_user_for_reviews)){
         return;
         }
         temp = (*head)->next;
@@ -676,7 +676,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 19: //char * language;
-        if(strcmp((*head)->language,((*head)->next)-> language)<0){
+        if(strcmp((*head)->language,((*head)->next)-> language)<=0){
           return;
           }
         temp = (*head)->next;
@@ -685,7 +685,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 20: //char * country;
-        if(strcmp((*head)->country,((*head)->next)-> country)<0){
+        if(strcmp((*head)->country,((*head)->next)-> country)<=0){
           return;
         }
         temp = (*head)->next;
@@ -694,7 +694,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 21: //char * content_rating;
-        if(strcmp((*head)->content_rating,((*head)->next)-> content_rating)<0){
+        if(strcmp((*head)->content_rating,((*head)->next)-> content_rating)<=0){
           return;
         }
         temp = (*head)->next;
@@ -703,7 +703,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 22: //int budget;
-        if(((*head)->budget) < (((*head)->next)-> budget)){
+        if(((*head)->budget) <= (((*head)->next)-> budget)){
         return;
         }
         temp = (*head)->next;
@@ -712,7 +712,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 23: //int title_year;
-        if(((*head)->title_year) < (((*head)->next)-> title_year)){
+        if(((*head)->title_year) <= (((*head)->next)-> title_year)){
         return;
         }
         temp = (*head)->next;
@@ -721,7 +721,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 24: //int actor_2_facebook_likes;
-        if(((*head)->actor_2_facebook_likes) < (((*head)->next)-> actor_2_facebook_likes)){
+        if(((*head)->actor_2_facebook_likes) <= (((*head)->next)-> actor_2_facebook_likes)){
         return;
         }
         temp = (*head)->next;
@@ -730,7 +730,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 25: //float imdb_score;
-        if(((*head)->imdb_score) < (((*head)->next)-> imdb_score)){
+        if(((*head)->imdb_score) <= (((*head)->next)-> imdb_score)){
           return;
         }
         temp = (*head)->next;
@@ -739,7 +739,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 26: //float aspect_ratio;
-        if(((*head)->aspect_ratio) < (((*head)->next)-> aspect_ratio)){
+        if(((*head)->aspect_ratio) <= (((*head)->next)-> aspect_ratio)){
           return;
         }
         temp = (*head)->next;
@@ -748,7 +748,7 @@ mergesort(Record ** head, int sortByCol)
         *head = temp;
         return;
   		case 27: //int movie_facebook_likes;
-        if(((*head)->movie_facebook_likes) < (((*head)->next)-> movie_facebook_likes)){
+        if(((*head)->movie_facebook_likes) <= (((*head)->next)-> movie_facebook_likes)){
           return;
         }
         temp = (*head)->next;
