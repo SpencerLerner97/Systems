@@ -488,7 +488,7 @@ merge(Record ** head, Record ** secondHead, int sortBycol)
 }
 
 
-void
+Record **
 mergesort(Record ** head, int sortByCol)
  {//mergesort on head done by which column. COlumn is currently a string but we may swithc it to a int.
 	 int size = count(head);
@@ -498,7 +498,7 @@ mergesort(Record ** head, int sortByCol)
 		Record ** secondHalf = &secondHead;
 		mergesort(head,sortByCol);
 		mergesort(secondHalf,sortByCol);
-		merge(head,secondHalf,sortByCol);
+		return merge(head,secondHalf,sortByCol);
 
 	}
 	if(size == 2){ //if list has two items check, maybe swap and than get out.
@@ -506,260 +506,259 @@ mergesort(Record ** head, int sortByCol)
 		switch(sortByCol){
 		  case 0: //char* color;
         if(strcmp((*head)->color,((*head)->next)-> color)<=0){
-         return;
+         return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 1: //char* director_name;
         if(strcmp((*head)->director_name,((*head)->next)-> director_name)<=0){
-          return;
+          return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 2: //int num_critic_for_reviews;
   		  if(((*head)->num_critic_for_reviews) <= (((*head)->next)-> num_critic_for_reviews)){
-  			 return;
+  			           return head;
   		  }
   		  temp = (*head)->next;
   		  temp->next = *head;
   		  (*head)->next = NULL;
   		  *head = temp;
-  		  return;
+  		  return head;
   		case 3: //int duration;
         if(((*head)->duration) <= (((*head)->next)-> duration)){
-        return;
+        return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 4: //int director_facebook_likes;
         if(((*head)->director_facebook_likes) <= (((*head)->next)->director_facebook_likes)){
-        return;
+        return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 5: //int actor_3_facebook_likes;
         if(((*head)->actor_3_facebook_likes) <= (((*head)->next)-> actor_3_facebook_likes)){
-        return;
+        return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 6: //char * actor_2_name;
         if(strcmp((*head)->actor_2_name,((*head)->next)-> actor_2_name)<=0){
-         return;
+         return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 7: //int actor_1_facebook_likes;
         if(((*head)->actor_1_facebook_likes) <= (((*head)->next)->actor_1_facebook_likes)){
-        return;
+        return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 8: //int gross;
         if(((*head)->gross) <= (((*head)->next)-> gross)){
-        return;
+        return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 9: //char * genres;
         if(strcmp((*head)->genres,((*head)->next)->genres)<=0){
-          return;
+          return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 10: //char * actor_1_name;
         if(strcmp(((*head)->actor_1_name),((*head)->next)-> actor_1_name)<=0){
-          return;
+          return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 11: //char * movie_title;
         if(strcmp((*head)->movie_title,((*head)->next)->movie_title)<=0){
-          return;
+          return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 12: //int num_voted_users;
         if(((*head)->num_voted_users) <= (((*head)->next)-> num_voted_users)){
-        return;
+        return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 13: //int cast_total_facebook_likes;
         if(((*head)->cast_total_facebook_likes) <= (((*head)->next)-> cast_total_facebook_likes)){
-        return;
+        return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 14: //char * actor_3_name;
         if(strcmp((*head)->actor_3_name,((*head)->next)-> actor_3_name)<=0){
-          return;
+          return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 15: //int facenumber_in_poster;
         if(((*head)->facenumber_in_poster) <= (((*head)->next)-> facenumber_in_poster)){
-        return;
+        return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 16: //char * plot_keywords;
         if(strcmp((*head)->plot_keywords,((*head)->next)-> plot_keywords)<=0){
-          return;
+          return head;
           }
           temp = (*head)->next;
           temp->next = *head;
           (*head)->next = NULL;
           *head = temp;
-          return;
+          return head;
   		case 17: //char * movie_imdb_link;
         if(strcmp((*head)->movie_imdb_link,((*head)->next)-> movie_imdb_link)<=0){
-          return;
+          return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 18: //int num_user_for_reviews;
         if(((*head)->num_user_for_reviews) <= (((*head)->next)-> num_user_for_reviews)){
-        return;
+        return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 19: //char * language;
         if(strcmp((*head)->language,((*head)->next)-> language)<=0){
-          return;
+          return head;
           }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 20: //char * country;
         if(strcmp((*head)->country,((*head)->next)-> country)<=0){
-          return;
+          return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 21: //char * content_rating;
         if(strcmp((*head)->content_rating,((*head)->next)-> content_rating)<=0){
-          return;
+          return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 22: //int budget;
         if(((*head)->budget) <= (((*head)->next)-> budget)){
-        return;
+        return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 23: //int title_year;
         if(((*head)->title_year) <= (((*head)->next)-> title_year)){
-        return;
+        return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 24: //int actor_2_facebook_likes;
         if(((*head)->actor_2_facebook_likes) <= (((*head)->next)-> actor_2_facebook_likes)){
-        return;
+        return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 25: //float imdb_score;
         if(((*head)->imdb_score) <= (((*head)->next)-> imdb_score)){
-          return;
+          return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 26: //float aspect_ratio;
         if(((*head)->aspect_ratio) <= (((*head)->next)-> aspect_ratio)){
-          return;
+          return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
   		case 27: //int movie_facebook_likes;
         if(((*head)->movie_facebook_likes) <= (((*head)->next)-> movie_facebook_likes)){
-          return;
+          return head;
         }
         temp = (*head)->next;
         temp->next = *head;
         (*head)->next = NULL;
         *head = temp;
-        return;
+        return head;
 	}
-	if(size == 1){
-		return;
 	}
+		return head;
 
-}
+
 }

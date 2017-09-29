@@ -205,7 +205,7 @@ int main(int argc, char *argv[]){
   else if(strcmp(sortByCol, "movie_facebook_likes")==0)sortInt=27;
 
   //sort the linked list based off of sort column
-  mergesort(&head, sortInt);
+  Record ** Shead = mergesort(&head, sortInt);
 
   //print CSV to stdout
   printf("color,director_name,num_critic_for_reviews,duration,director_facebook_likes,"
@@ -214,7 +214,7 @@ int main(int argc, char *argv[]){
   "plot_keywords,movie_imdb_link,num_user_for_reviews,language,country,content_rating,"
   "budget,title_year,actor_2_facebook_likes,imdb_score,aspect_ratio,movie_facebook_likes\n");
 
-  while(head->next != NULL){
+  while((*Shead)->next != NULL){
     Record * r = head;
     char numCritic[50] = "";
     char duration[50] = "";
