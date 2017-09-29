@@ -203,9 +203,14 @@ int main(int argc, char *argv[]){
   else if(strcmp(sortByCol, "imdb_score")==0)sortInt=25;
   else if(strcmp(sortByCol, "aspect_ratio")==0)sortInt=27;
   else if(strcmp(sortByCol, "movie_facebook_likes")==0)sortInt=27;
+  else{
+    printf("Please use a valid column name!\n");
+    return 0;
+  }
 
   //sort the linked list based off of sort column
   Record ** Shead = mergesort(&head, sortInt);
+  Record * sortedHead = *Shead;
 
   //print CSV to stdout
   printf("color,director_name,num_critic_for_reviews,duration,director_facebook_likes,"
@@ -214,8 +219,8 @@ int main(int argc, char *argv[]){
   "plot_keywords,movie_imdb_link,num_user_for_reviews,language,country,content_rating,"
   "budget,title_year,actor_2_facebook_likes,imdb_score,aspect_ratio,movie_facebook_likes\n");
 
-  while((*Shead)->next != NULL){
-    Record * r = head;
+  while(sortedHead->next != NULL){
+    Record * r = sortedHead;
     char numCritic[50] = "";
     char duration[50] = "";
     char directLikes[50] = "";
@@ -305,8 +310,8 @@ int main(int argc, char *argv[]){
               budget, titleYear, actor2Likes, imdbScore,
               aspectRatio, movieLikes);
     }
-    Record * temp = head;
-    head = head->next;
+    Record * temp = sortedHead;
+    sortedHead = sortedHead->next;
     /*free(&temp->color);
     free(&temp->director_name);
     free(&temp->num_critic_for_reviews);
