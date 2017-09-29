@@ -493,11 +493,13 @@ mergesort(Record ** head, int sortByCol)
  {//mergesort on head done by which column. COlumn is currently a string but we may swithc it to a int.
 	 int size = count(head);
 	 if(size > 2){//the general case of a list with more than 2 items
-		Record * secondHead;
+		Record * secondHead; Record * fhead;
 		secondHead = split(head,size);
 		Record ** secondHalf = &secondHead;
-		mergesort(head,sortByCol);
-		mergesort(secondHalf,sortByCol);
+		secondHead = *mergesort(secondHalf,sortByCol);
+		fhead = *mergesort(head,sortByCol);
+		*head = fhead;
+		*secondHalf  = secondHead;
 		return merge(head,secondHalf,sortByCol);
 
 	}

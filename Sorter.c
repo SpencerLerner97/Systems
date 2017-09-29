@@ -209,8 +209,10 @@ int main(int argc, char *argv[]){
   }
 
   //sort the linked list based off of sort column
+  int bcount = count(&head);
   Record ** Shead = mergesort(&head, sortInt);
   Record * sortedHead = *Shead;
+  int pcount = count(Shead);
 
   //print CSV to stdout
   printf("color,director_name,num_critic_for_reviews,duration,director_facebook_likes,"
@@ -341,5 +343,6 @@ int main(int argc, char *argv[]){
     free(&temp->movie_facebook_likes);*/
     free(temp);
   }
+  printf("count before %d\n count after %d\n",bcount, pcount);
   return 0;
 }
