@@ -23,7 +23,7 @@ struct rStruct{
   char * language;
   char * country;
   char * content_rating;
-  int budget;
+  long budget;
   int title_year;
   int actor_2_facebook_likes;
   float imdb_score;

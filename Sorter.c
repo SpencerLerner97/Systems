@@ -129,7 +129,7 @@ int main(int argc, char *argv[]){
               head->content_rating = token;
               break;
             case 22:
-              head->budget = token[0] == '\0' ? -1 : atoi(token);
+              head->budget = token[0] == '\0' ? -1 :atol(token);
               break;
             case 23:
               head->title_year = token[0] == '\0' ? -1 : atoi(token);
@@ -272,7 +272,7 @@ int main(int argc, char *argv[]){
         snprintf(numReviews, 5000, "%d",r->num_critic_for_reviews);
     }
     if(r->budget != -1){
-        snprintf(budget, 5000, "%d",r->budget);
+        snprintf(budget, 5000, "%li",r->budget);
     }
     if(r->actor_2_facebook_likes != -1){
         snprintf(actor2Likes, 5000, "%d",r->actor_2_facebook_likes);
