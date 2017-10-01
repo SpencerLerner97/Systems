@@ -9,12 +9,12 @@
 int main(int argc, char *argv[]){
   //make sure we have all 3 args
   if(argc != 3){
-    printf("Missing arguments. Usage is: 'cat input.file | ./sorter -c  [column]'\n");
+    fprintf(stderr, "Missing arguments. Usage is: 'cat input.file | ./sorter -c  [column]'\n");
     return 0;
   }
   //sorter can only support column sorting right now
   if(strcmp(argv[1], "-c") != 0){
-    printf("Usage is: 'cat input.file | ./sorter -c [column]'\n");
+    fprintf(stderr, "Usage is: 'cat input.file | ./sorter -c [column]'\n");
   }
   const char * sortByCol = argv[2];
   char * line = NULL;
@@ -141,7 +141,8 @@ int main(int argc, char *argv[]){
               break;
             case 25:
               head->imdb_score = token[0] == '\0' ? -1 : atof(token);
-              break;            case 26:
+              break;
+            case 26:
               head->aspect_ratio = token[0] == '\0' ? -1 : atof(token);
               break;
             case 27:
@@ -203,7 +204,7 @@ int main(int argc, char *argv[]){
   else if(strcmp(sortByCol, "title_year")==0)sortInt=23;
   else if(strcmp(sortByCol, "actor_2_facebook_likes")==0)sortInt=24;
   else if(strcmp(sortByCol, "imdb_score")==0)sortInt=25;
-  else if(strcmp(sortByCol, "aspect_ratio")==0)sortInt=27;
+  else if(strcmp(sortByCol, "aspect_ratio")==0)sortInt=26;
   else if(strcmp(sortByCol, "movie_facebook_likes")==0)sortInt=27;
   else{
     printf("Please use a valid column name!\n");
