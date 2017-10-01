@@ -21,9 +21,11 @@ int main(int argc, char *argv[]){
   size_t nbytes = 0 * sizeof(char);
   Record * prevRec = NULL;
   Record * head = NULL;
+  getline(&line, &nbytes, stdin); //skip over first row
 
   //eat stdin line by line
   while (getline(&line, &nbytes, stdin) != -1) {
+    //if(line[0] == 'c')
     head = (Record *)malloc(sizeof(Record));
     int start = 0;
     int end = 0;
@@ -139,8 +141,7 @@ int main(int argc, char *argv[]){
               break;
             case 25:
               head->imdb_score = token[0] == '\0' ? -1 : atof(token);
-              break;
-            case 26:
+              break;            case 26:
               head->aspect_ratio = token[0] == '\0' ? -1 : atof(token);
               break;
             case 27:
@@ -171,6 +172,7 @@ int main(int argc, char *argv[]){
     //create a struct
     head->next = prevRec;
     prevRec = head;
+    //printf("%d - %s\n", head->duration, head->director_name);
   }
 
   //parse sort column into an int for the sorting
@@ -209,10 +211,9 @@ int main(int argc, char *argv[]){
   }
 
   //sort the linked list based off of sort column
-  int bcount = count(&head);
   Record ** Shead = mergesort(&head, sortInt);
   Record * sortedHead = *Shead;
-  int pcount = count(Shead);
+  //Record * sortedHead = head;
 
   //print CSV to stdout
   printf("color,director_name,num_critic_for_reviews,duration,director_facebook_likes,"
@@ -221,7 +222,7 @@ int main(int argc, char *argv[]){
   "plot_keywords,movie_imdb_link,num_user_for_reviews,language,country,content_rating,"
   "budget,title_year,actor_2_facebook_likes,imdb_score,aspect_ratio,movie_facebook_likes\n");
 
-  while(sortedHead->next != NULL){
+  while(sortedHead != NULL){
     Record * r = sortedHead;
     char numCritic[50] = "";
     char duration[50] = "";
@@ -239,7 +240,6 @@ int main(int argc, char *argv[]){
     char imdbScore[50] = "";
     char aspectRatio[50] = "";
     char movieLikes[50] = "";
-
 
     if(r->num_critic_for_reviews != -1){
         snprintf(numCritic, 5000, "%d",r->num_critic_for_reviews);
@@ -343,6 +343,6 @@ int main(int argc, char *argv[]){
     free(&temp->movie_facebook_likes);*/
     free(temp);
   }
-  printf("count before %d\n count after %d\n",bcount, pcount);
+  //printf("count before %d\n count after %d\n",bcount, pcount);
   return 0;
 }
