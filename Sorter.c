@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "Sorter.h"
 #include "mergesort.c"
+#include <pthread.h>
 
 int main(int argc, char *argv[]){
   //make sure we have all 3 args
@@ -342,8 +343,8 @@ int main(int argc, char *argv[]){
     free(&temp->imdb_score);
     free(&temp->aspect_ratio);
     free(&temp->movie_facebook_likes);*/
-    free(temp);
-  }
+    //free(temp);
+  	}
   //printf("count before %d\n count after %d\n",bcount, pcount);
   return 0;
 }

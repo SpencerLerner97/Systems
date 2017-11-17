@@ -34,6 +34,14 @@ struct rStruct{
 };
 typedef struct rStruct Record;
 
+struct mergM{
+	Record ** head;
+	int sortByCol;
+	};
+typedef struct mergM mergeMeta;
+
+void * smallThreadSort(void *);
+void * threadSort(void *);
 Record ** mergesort(Record **, int);
 int count(Record **);
 Record * split(Record **, int);
